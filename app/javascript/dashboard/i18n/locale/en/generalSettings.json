@@ -104,6 +104,14 @@
           "ERROR": "Failed to update audio transcription setting"
         }
       },
+      "AI_SUGGESTIONS": {
+        "TITLE": "AI reply suggestions",
+        "NOTE": "Enable AI-generated reply suggestions for agents.",
+        "API": {
+          "SUCCESS": "AI suggestions setting updated",
+          "ERROR": "Failed to update AI suggestions setting"
+        }
+      },
       "AUTO_RESOLVE_DURATION": {
         "LABEL": "Inactivity duration for resolution",
         "HELP": "Duration after a conversation should auto resolve if there is no activity",

@@ -162,6 +162,8 @@ en:
     attachment: 'Attachment'
     no_content: 'No content'
   conversations:
+    ai_suggestions:
+      error: 'AI suggestions could not be generated'
     captain:
       handoff: 'Transferring to another agent for further assistance.'
     messages:

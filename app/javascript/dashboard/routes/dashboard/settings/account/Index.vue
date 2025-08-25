@@ -18,6 +18,7 @@ import AccountDelete from './components/AccountDelete.vue';
 import AutoResolve from './components/AutoResolve.vue';
 import AudioTranscription from './components/AudioTranscription.vue';
 import SectionLayout from './components/SectionLayout.vue';
+import AiSuggestions from './components/AiSuggestions.vue';
 
 export default {
   components: {
@@ -28,6 +29,7 @@ export default {
     AccountDelete,
     AutoResolve,
     AudioTranscription,
+    AiSuggestions,
     SectionLayout,
     WithLabel,
     NextInput,
@@ -244,6 +246,7 @@ export default {
     </div>
     <AutoResolve v-if="showAutoResolutionConfig" />
     <AudioTranscription v-if="showAudioTranscriptionConfig" />
+    <AiSuggestions />
     <AccountId />
     <div v-if="!uiFlags.isFetchingItem && isOnChatwootCloud">
       <AccountDelete />
