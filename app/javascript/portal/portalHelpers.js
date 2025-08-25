@@ -29,30 +29,28 @@ export const getHeadingsfromTheArticle = () => {
 
 export const openExternalLinksInNewTab = () => {
   const { customDomain, hostURL } = window.portalConfig;
-  const isOnArticlePage =
-    document.querySelector('#cw-article-content') !== null;
+  const articleContent = document.querySelector('#cw-article-content');
+  if (!articleContent) return;
+
+  const currentLocation = window.location.href;
 
   document.addEventListener('click', event => {
-    if (!isOnArticlePage) return;
-
     const link = event.target.closest('a');
+    if (!link) return;
 
-    if (link) {
-      const currentLocation = window.location.href;
-      const linkHref = link.href;
+    const linkHref = link.href;
 
-      // Check against current location and custom domains
-      const isInternalLink =
-        isSameHost(linkHref, currentLocation) ||
-        (customDomain && isSameHost(linkHref, customDomain)) ||
-        (hostURL && isSameHost(linkHref, hostURL));
+    // Check against current location and custom domains
+    const isInternalLink =
+      isSameHost(linkHref, currentLocation) ||
+      (customDomain && isSameHost(linkHref, customDomain)) ||
+      (hostURL && isSameHost(linkHref, hostURL));
 
-      if (!isInternalLink) {
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer'; // Security and performance benefits
-        // Prevent default if you want to stop the link from opening in the current tab
-        event.stopPropagation();
-      }
+    if (!isInternalLink) {
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer'; // Security and performance benefits
+      // Prevent default if you want to stop the link from opening in the current tab
+      event.stopPropagation();
     }
   });
 };
@@ -101,14 +99,15 @@ export const InitializationHelpers = {
   },
 
   appendPlainParamToURLs: () => {
-    [...document.getElementsByTagName('a')].forEach(aTagElement => {
+    const links = document.getElementsByTagName('a');
+    for (let i = 0; i < links.length; i += 1) {
+      const aTagElement = links[i];
       if (aTagElement.href && aTagElement.href.includes('/hc/')) {
         const url = new URL(aTagElement.href);
         url.searchParams.set('show_plain_layout', 'true');
-
-        aTagElement.setAttribute('href', url);
+        aTagElement.setAttribute('href', url.toString());
       }
-    });
+    }
   },
 
   setDirectionAttribute: () => {
