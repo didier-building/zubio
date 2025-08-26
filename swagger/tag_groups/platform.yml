@@ -3,14 +3,14 @@ info:
   title: Chatwoot - Platform API
   description: Platform API endpoints for Chatwoot
   version: 1.1.0
-  termsOfService: https://www.chatwoot.com/terms-of-service/
+  termsOfService: https://www.zubio.com/terms-of-service/
   contact:
-    email: hello@chatwoot.com
+    email: hello@zubio.com
   license:
     name: MIT License
     url: https://opensource.org/licenses/MIT
 servers:
-  - url: https://app.chatwoot.com/
+  - url: https://app.zubio.com/
 tags:
   - name: Accounts
     description: Platform account management

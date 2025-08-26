@@ -1,48 +1,70 @@
-<script>
+<script setup>
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
 import AgentMessage from 'widget/components/AgentMessage.vue';
 import UserMessage from 'widget/components/UserMessage.vue';
-import { mapGetters } from 'vuex';
 import { MESSAGE_TYPE } from 'widget/helpers/constants';
 
-export default {
-  components: {
-    AgentMessage,
-    UserMessage,
-  },
-  props: {
-    message: {
-      type: Object,
-      default: () => {},
-    },
-  },
-  computed: {
-    ...mapGetters({
-      allMessages: 'conversation/getConversation',
-    }),
-    isUserMessage() {
-      return this.message.message_type === MESSAGE_TYPE.INCOMING;
-    },
-    replyTo() {
-      const replyTo = this.message?.content_attributes?.in_reply_to;
-      return replyTo ? this.allMessages[replyTo] : null;
-    },
-  },
-};
+const props = defineProps({
+  message: { type: Object, default: () => ({}) },
+});
+
+const store = useStore();
+const allMessages = computed(
+  () => store.getters['conversation/getConversation']
+);
+const isUserMessage = computed(
+  () => props.message.message_type === MESSAGE_TYPE.INCOMING
+);
+const replyTo = computed(() => {
+  const replyId = props.message?.content_attributes?.in_reply_to;
+  return replyId ? allMessages.value[replyId] : null;
+});
+
+const showOriginal = ref(false);
+const hasOriginal = computed(
+  () => !!props.message?.content_attributes?.original_content
+);
+const displayMessage = computed(() => {
+  if (hasOriginal.value && showOriginal.value) {
+    return {
+      ...props.message,
+      content: props.message.content_attributes.original_content,
+    };
+  }
+  return props.message;
+});
+function toggleOriginal() {
+  showOriginal.value = !showOriginal.value;
+}
 </script>
 
 <template>
-  <UserMessage
-    v-if="isUserMessage"
-    :id="`cwmsg-${message.id}`"
-    :message="message"
-    :reply-to="replyTo"
-  />
-  <AgentMessage
-    v-else
-    :id="`cwmsg-${message.id}`"
-    :message="message"
-    :reply-to="replyTo"
-  />
+  <div>
+    <UserMessage
+      v-if="isUserMessage"
+      :id="`cwmsg-${message.id}`"
+      :message="displayMessage"
+      :reply-to="replyTo"
+    />
+    <AgentMessage
+      v-else
+      :id="`cwmsg-${message.id}`"
+      :message="displayMessage"
+      :reply-to="replyTo"
+    />
+    <button
+      v-if="hasOriginal"
+      class="text-xs text-n-slate-11 mt-1"
+      @click="toggleOriginal"
+    >
+      {{
+        showOriginal
+          ? $t('COMPONENTS.CHAT_MESSAGE.SHOW_TRANSLATED')
+          : $t('COMPONENTS.CHAT_MESSAGE.SHOW_ORIGINAL')
+      }}
+    </button>
+  </div>
 </template>
 
 <style scoped lang="scss">

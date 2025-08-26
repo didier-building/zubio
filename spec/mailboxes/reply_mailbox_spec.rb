@@ -190,7 +190,7 @@ RSpec.describe ReplyMailbox do
       end
 
       it 'find channel with in message source id stated in in_reply_to' do
-        conversation_1.messages.new(source_id: '0CB459E0-0336-41DA-BC88-E6E28C697DDB@chatwoot.com', account_id: account.id, message_type: 'incoming',
+        conversation_1.messages.new(source_id: '0CB459E0-0336-41DA-BC88-E6E28C697DDB@zubio.com', account_id: account.id, message_type: 'incoming',
                                     inbox_id: email_channel.inbox.id).save!
         described_class.receive in_reply_to_email
         expect(conversation_1.messages.last.content).to eq("Let's talk about these images:")
@@ -213,7 +213,7 @@ RSpec.describe ReplyMailbox do
           <<~BODY.chomp
             Yes, I am providing you step how to reproduce this issue
 
-            On Thu, Aug 19, 2021 at 2:07 PM Tejaswini from Email sender test < tejaswini@chatwoot.com> wrote:
+            On Thu, Aug 19, 2021 at 2:07 PM Tejaswini from Email sender test < tejaswini@zubio.com> wrote:
 
             > Any update on this?
             >
@@ -234,7 +234,7 @@ RSpec.describe ReplyMailbox do
           <<~BODY.chomp
             Yes, I am providing you step how to reproduce this issue
 
-            On Thu, Aug 19, 2021 at 2:07 PM Tejaswini from Email sender test < tejaswini@chatwoot.com> wrote:
+            On Thu, Aug 19, 2021 at 2:07 PM Tejaswini from Email sender test < tejaswini@zubio.com> wrote:
 
             > Any update on this?
             >

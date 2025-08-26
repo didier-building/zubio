@@ -19,6 +19,7 @@ import AutoResolve from './components/AutoResolve.vue';
 import AudioTranscription from './components/AudioTranscription.vue';
 import SentimentAnalysis from './components/SentimentAnalysis.vue';
 import SectionLayout from './components/SectionLayout.vue';
+import AiSuggestions from './components/AiSuggestions.vue';
 
 export default {
   components: {
@@ -30,6 +31,7 @@ export default {
     AutoResolve,
     AudioTranscription,
     SentimentAnalysis,
+    AiSuggestions,
     SectionLayout,
     WithLabel,
     NextInput,
@@ -253,6 +255,7 @@ export default {
     <AutoResolve v-if="showAutoResolutionConfig" />
     <AudioTranscription v-if="showAudioTranscriptionConfig" />
     <SentimentAnalysis v-if="showSentimentAnalysisConfig" />
+    <AiSuggestions />
     <AccountId />
     <div v-if="!uiFlags.isFetchingItem && isOnChatwootCloud">
       <AccountDelete />

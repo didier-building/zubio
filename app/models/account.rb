@@ -56,6 +56,7 @@ class Account < ApplicationRecord
 
   store_accessor :settings, :auto_resolve_after, :auto_resolve_message, :auto_resolve_ignore_waiting
   store_accessor :settings, :audio_transcriptions, :sentiment_analysis, :auto_resolve_label
+  store_accessor :settings, :audio_transcriptions, :auto_resolve_label, :ai_suggestions_enabled
 
   has_many :account_users, dependent: :destroy_async
   has_many :agent_bot_inboxes, dependent: :destroy_async

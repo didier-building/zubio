@@ -128,6 +128,7 @@ class Message < ApplicationRecord
   has_many :notifications, as: :primary_actor, dependent: :destroy_async
 
   after_create_commit :execute_after_create_commit_callbacks
+  after_create_commit :auto_translate
 
   after_update_commit :dispatch_update_event
 
@@ -402,6 +403,36 @@ class Message < ApplicationRecord
 
   def conversation_mail_key
     format(::Redis::Alfred::CONVERSATION_MAILER_KEY, conversation_id: conversation.id)
+  end
+
+  def auto_translate
+    return if content.blank?
+
+    service = TranslationService.new
+    contact = conversation.contact
+
+    if incoming?
+      lang = contact.preferred_language.presence || service.detect_language(content)
+      contact.update(preferred_language: lang) if contact.preferred_language.blank? && lang.present?
+      target = I18n.locale.to_s
+      translated = service.translate(content, target, source_language: lang) if lang.present? && target != lang
+      if translated.present?
+        attrs = content_attributes || {}
+        attrs['translated_content'] = translated
+        update!(content_attributes: attrs)
+      end
+    elsif outgoing?
+      return if content_attributes&.[]('send_original')
+      target = contact.preferred_language
+      translated = service.translate(content, target) if target.present?
+      if translated.present?
+        attrs = content_attributes || {}
+        attrs['original_content'] = content
+        update!(content: translated, content_attributes: attrs)
+      end
+    end
+  rescue StandardError => e
+    Rails.logger.error("translation_error: #{e.message}")
   end
 
   def validate_attachments_limit(_attachment)

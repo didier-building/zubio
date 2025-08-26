@@ -45,6 +45,8 @@ class Contact < ApplicationRecord
   include Labelable
   include LlmFormattable
 
+  store_accessor :additional_attributes, :preferred_language
+
   validates :account_id, presence: true
   validates :email, allow_blank: true, uniqueness: { scope: [:account_id], case_sensitive: false },
                     format: { with: Devise.email_regexp, message: I18n.t('errors.contacts.email.invalid') }

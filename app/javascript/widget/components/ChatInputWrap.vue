@@ -1,123 +1,109 @@
-<script>
-import { mapGetters } from 'vuex';
-
+<script setup>
+import { ref, watch, onMounted, onBeforeUnmount, computed } from 'vue';
+import { useStore } from 'vuex';
+import { useMapGetter } from 'dashboard/composables/store.js';
 import ChatAttachmentButton from 'widget/components/ChatAttachment.vue';
 import ChatSendButton from 'widget/components/ChatSendButton.vue';
-import configMixin from '../mixins/configMixin';
 import FluentIcon from 'shared/components/FluentIcon/Index.vue';
 import ResizableTextArea from 'shared/components/ResizableTextArea.vue';
-
 import EmojiInput from 'shared/components/emoji/EmojiInput.vue';
 
-export default {
-  name: 'ChatInputWrap',
-  components: {
-    ChatAttachmentButton,
-    ChatSendButton,
-    EmojiInput,
-    FluentIcon,
-    ResizableTextArea,
-  },
-  mixins: [configMixin],
-  props: {
-    onSendMessage: {
-      type: Function,
-      default: () => {},
-    },
-    onSendAttachment: {
-      type: Function,
-      default: () => {},
-    },
-  },
-  data() {
-    return {
-      userInput: '',
-      showEmojiPicker: false,
-      isFocused: false,
-    };
-  },
+const props = defineProps({
+  onSendMessage: { type: Function, default: () => {} },
+  onSendAttachment: { type: Function, default: () => {} },
+});
 
-  computed: {
-    ...mapGetters({
-      widgetColor: 'appConfig/getWidgetColor',
-      isWidgetOpen: 'appConfig/getIsWidgetOpen',
-      shouldShowFilePicker: 'appConfig/getShouldShowFilePicker',
-      shouldShowEmojiPicker: 'appConfig/getShouldShowEmojiPicker',
-    }),
-    showAttachment() {
-      return (
-        this.shouldShowFilePicker &&
-        this.hasAttachmentsEnabled &&
-        this.userInput.length === 0
-      );
-    },
-    showSendButton() {
-      return this.userInput.length > 0;
-    },
-  },
-  watch: {
-    isWidgetOpen(isWidgetOpen) {
-      if (isWidgetOpen) {
-        this.focusInput();
-      }
-    },
-  },
-  unmounted() {
-    document.removeEventListener('keypress', this.handleEnterKeyPress);
-  },
-  mounted() {
-    document.addEventListener('keypress', this.handleEnterKeyPress);
-    if (this.isWidgetOpen) {
-      this.focusInput();
-    }
-  },
+const widgetColor = useMapGetter('appConfig/getWidgetColor');
+const isWidgetOpen = useMapGetter('appConfig/getIsWidgetOpen');
+const shouldShowFilePicker = useMapGetter('appConfig/getShouldShowFilePicker');
+const shouldShowEmojiPicker = useMapGetter(
+  'appConfig/getShouldShowEmojiPicker'
+);
 
-  methods: {
-    onBlur() {
-      this.isFocused = false;
-    },
-    onFocus() {
-      this.isFocused = true;
-    },
-    handleButtonClick() {
-      if (this.userInput && this.userInput.trim()) {
-        this.onSendMessage(this.userInput);
-      }
-      this.userInput = '';
-      this.focusInput();
-    },
-    handleEnterKeyPress(e) {
-      if (e.keyCode === 13 && !e.shiftKey) {
-        e.preventDefault();
-        this.handleButtonClick();
-      }
-    },
-    toggleEmojiPicker() {
-      this.showEmojiPicker = !this.showEmojiPicker;
-    },
-    hideEmojiPicker(e) {
-      if (this.showEmojiPicker) {
-        e.stopPropagation();
-        this.toggleEmojiPicker();
-      }
-    },
-    emojiOnClick(emoji) {
-      this.userInput = `${this.userInput}${emoji} `;
-    },
-    onTypingOff() {
-      this.toggleTyping('off');
-    },
-    onTypingOn() {
-      this.toggleTyping('on');
-    },
-    toggleTyping(typingStatus) {
-      this.$store.dispatch('conversation/toggleUserTyping', { typingStatus });
-    },
-    focusInput() {
-      this.$refs.chatInput.focus();
-    },
-  },
-};
+const userInput = ref('');
+const showEmojiPicker = ref(false);
+const isFocused = ref(false);
+const chatInput = ref(null);
+
+const channelConfig = window.chatwootWebChannel;
+const hasAttachmentsEnabled = computed(() =>
+  channelConfig.enabledFeatures.includes('attachments')
+);
+const hasEmojiPickerEnabled = computed(() =>
+  channelConfig.enabledFeatures.includes('emoji_picker')
+);
+
+const showAttachment = computed(
+  () =>
+    shouldShowFilePicker.value &&
+    hasAttachmentsEnabled.value &&
+    userInput.value.length === 0
+);
+const showSendButton = computed(() => userInput.value.length > 0);
+
+const store = useStore();
+
+function focusInput() {
+  chatInput.value.focus();
+}
+function handleButtonClick(sendOriginal = false) {
+  if (userInput.value && userInput.value.trim()) {
+    props.onSendMessage(userInput.value, { sendOriginal });
+  }
+  userInput.value = '';
+  focusInput();
+}
+function handleEnterKeyPress(e) {
+  if (e.keyCode === 13 && !e.shiftKey) {
+    e.preventDefault();
+    handleButtonClick();
+  }
+}
+
+watch(isWidgetOpen, val => {
+  if (val) {
+    focusInput();
+  }
+});
+
+onMounted(() => {
+  document.addEventListener('keypress', handleEnterKeyPress);
+  if (isWidgetOpen.value) {
+    focusInput();
+  }
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keypress', handleEnterKeyPress);
+});
+
+function onBlur() {
+  isFocused.value = false;
+}
+function onFocus() {
+  isFocused.value = true;
+}
+function toggleEmojiPicker() {
+  showEmojiPicker.value = !showEmojiPicker.value;
+}
+function hideEmojiPicker(e) {
+  if (showEmojiPicker.value) {
+    e.stopPropagation();
+    toggleEmojiPicker();
+  }
+}
+function emojiOnClick(emoji) {
+  userInput.value = `${userInput.value}${emoji} `;
+}
+function toggleTyping(typingStatus) {
+  store.dispatch('conversation/toggleUserTyping', { typingStatus });
+}
+function onTypingOff() {
+  toggleTyping('off');
+}
+function onTypingOn() {
+  toggleTyping('on');
+}
 </script>
 
 <template>
@@ -146,7 +132,7 @@ export default {
       <ChatAttachmentButton
         v-if="showAttachment"
         class="text-n-slate-12"
-        :on-attach="onSendAttachment"
+        :on-attach="props.onSendAttachment"
       />
       <button
         v-if="shouldShowEmojiPicker && hasEmojiPickerEnabled"
@@ -172,8 +158,15 @@ export default {
       <ChatSendButton
         v-if="showSendButton"
         :color="widgetColor"
-        @click="handleButtonClick"
+        @click="handleButtonClick()"
       />
+      <button
+        v-if="showSendButton"
+        class="ml-2 text-xs text-n-slate-11"
+        @click="handleButtonClick(true)"
+      >
+        {{ $t('COMPONENTS.CHAT_INPUT.SEND_ORIGINAL') }}
+      </button>
     </div>
   </div>
 </template>

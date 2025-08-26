@@ -104,12 +104,19 @@
           "ERROR": "Failed to update audio transcription setting"
         }
       },
+
       "SENTIMENT_ANALYSIS": {
         "TITLE": "Enable Sentiment Analysis",
         "NOTE": "Analyze message sentiment and display trends. Additional charges may apply.",
         "API": {
           "SUCCESS": "Sentiment analysis setting updated successfully",
           "ERROR": "Failed to update sentiment analysis setting"
+      "AI_SUGGESTIONS": {
+        "TITLE": "AI reply suggestions",
+        "NOTE": "Enable AI-generated reply suggestions for agents.",
+        "API": {
+          "SUCCESS": "AI suggestions setting updated",
+          "ERROR": "Failed to update AI suggestions setting"
         }
       },
       "AUTO_RESOLVE_DURATION": {
