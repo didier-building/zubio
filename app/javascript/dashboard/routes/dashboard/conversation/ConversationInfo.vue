@@ -1,8 +1,10 @@
 <script setup>
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { getLanguageName } from 'dashboard/components/widgets/conversation/advancedFilterItems/languages';
 import ContactDetailsItem from './ContactDetailsItem.vue';
 import CustomAttributes from './customAttributes/CustomAttributes.vue';
+import SentimentBadge from 'dashboard/components/widgets/conversation/SentimentBadge.vue';
 
 const props = defineProps({
   conversationAttributes: {
@@ -33,6 +35,10 @@ const browserLanguage = computed(() =>
   getLanguageName(props.conversationAttributes.browser_language)
 );
 
+const sentimentScore = computed(
+  () => props.conversationAttributes.sentiment_score
+);
+
 const platformName = computed(() => {
   if (!browserInfo.value) return '';
   const { platform_name: name = '', platform_version: version = '' } =
@@ -42,41 +48,43 @@ const platformName = computed(() => {
 
 const createdAtIp = computed(() => props.contactAttributes.created_at_ip);
 
+const { t } = useI18n();
+
 const staticElements = computed(() =>
   [
     {
       content: initiatedAt,
-      title: 'CONTACT_PANEL.INITIATED_AT',
+      title: t('CONTACT_PANEL.INITIATED_AT'),
       key: 'static-initiated-at',
       type: 'static_attribute',
     },
     {
       content: browserLanguage,
-      title: 'CONTACT_PANEL.BROWSER_LANGUAGE',
+      title: t('CONTACT_PANEL.BROWSER_LANGUAGE'),
       key: 'static-browser-language',
       type: 'static_attribute',
     },
     {
       content: referer,
-      title: 'CONTACT_PANEL.INITIATED_FROM',
+      title: t('CONTACT_PANEL.INITIATED_FROM'),
       key: 'static-referer',
       type: 'static_attribute',
     },
     {
       content: browserName,
-      title: 'CONTACT_PANEL.BROWSER',
+      title: t('CONTACT_PANEL.BROWSER'),
       key: 'static-browser',
       type: 'static_attribute',
     },
     {
       content: platformName,
-      title: 'CONTACT_PANEL.OS',
+      title: t('CONTACT_PANEL.OS'),
       key: 'static-platform',
       type: 'static_attribute',
     },
     {
       content: createdAtIp,
-      title: 'CONTACT_PANEL.IP_ADDRESS',
+      title: t('CONTACT_PANEL.IP_ADDRESS'),
       key: 'static-ip-address',
       type: 'static_attribute',
     },
@@ -86,6 +94,9 @@ const staticElements = computed(() =>
 
 <template>
   <div class="conversation--details">
+    <div v-if="sentimentScore !== undefined" class="mb-2">
+      <SentimentBadge :score="sentimentScore" />
+    </div>
     <CustomAttributes
       :static-elements="staticElements"
       attribute-class="conversation--attribute"
@@ -95,7 +106,7 @@ const staticElements = computed(() =>
       <template #staticItem="{ element }">
         <ContactDetailsItem
           :key="element.title"
-          :title="$t(element.title)"
+          :title="element.title"
           :value="element.content.value"
         >
           <a
