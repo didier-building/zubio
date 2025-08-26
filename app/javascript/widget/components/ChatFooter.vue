@@ -60,10 +60,11 @@ export default {
   methods: {
     ...mapActions('conversation', ['sendMessage', 'sendAttachment']),
     ...mapActions('conversationAttributes', ['getAttributes']),
-    async handleSendMessage(content) {
+    async handleSendMessage(content, { sendOriginal } = {}) {
       await this.sendMessage({
         content,
         replyTo: this.inReplyTo ? this.inReplyTo.id : null,
+        sendOriginal,
       });
       // reset replyTo message after sending
       this.inReplyTo = null;

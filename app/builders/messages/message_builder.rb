@@ -18,6 +18,7 @@ class Messages::MessageBuilder
 
   def perform
     @message = @conversation.messages.build(message_params)
+    @message.content_attributes[:send_original] = @params[:send_original] if @params[:send_original]
     process_attachments
     process_emails
     @message.save!

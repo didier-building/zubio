@@ -31,17 +31,17 @@ export const actions = {
     }
   },
   sendMessage: async ({ dispatch }, params) => {
-    const { content, replyTo } = params;
+    const { content, replyTo, sendOriginal } = params;
     const message = createTemporaryMessage({ content, replyTo });
-    dispatch('sendMessageWithData', message);
+    dispatch('sendMessageWithData', { ...message, sendOriginal });
   },
   sendMessageWithData: async ({ commit }, message) => {
-    const { id, content, replyTo, meta = {} } = message;
+    const { id, content, replyTo, meta = {}, sendOriginal } = message;
 
     commit('pushMessageToConversation', message);
     commit('updateMessageMeta', { id, meta: { ...meta, error: '' } });
     try {
-      const { data } = await sendMessageAPI(content, replyTo);
+      const { data } = await sendMessageAPI(content, replyTo, sendOriginal);
 
       // [VITE] Don't delete this manually, since `pushMessageToConversation` does the replacement for us anyway
       // commit('deleteMessage', message.id);
