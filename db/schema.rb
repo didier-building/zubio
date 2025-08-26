@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_08_22_061042) do
+ActiveRecord::Schema[7.1].define(version: 2025_08_25_202837) do
   # These extensions should be enabled to support this database
   enable_extension "pg_stat_statements"
   enable_extension "pg_trgm"
@@ -616,6 +616,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_22_061042) do
     t.datetime "assignee_last_seen_at", precision: nil
     t.datetime "first_reply_created_at", precision: nil
     t.integer "priority"
+    t.integer "sentiment_score"
     t.bigint "sla_policy_id"
     t.datetime "waiting_since"
     t.text "cached_label_list"

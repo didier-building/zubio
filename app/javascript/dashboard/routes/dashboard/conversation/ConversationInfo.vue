@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { getLanguageName } from 'dashboard/components/widgets/conversation/advancedFilterItems/languages';
 import ContactDetailsItem from './ContactDetailsItem.vue';
 import CustomAttributes from './customAttributes/CustomAttributes.vue';
+import SentimentBadge from 'dashboard/components/widgets/conversation/SentimentBadge.vue';
 
 const props = defineProps({
   conversationAttributes: {
@@ -31,6 +32,10 @@ const browserName = computed(() => {
 
 const browserLanguage = computed(() =>
   getLanguageName(props.conversationAttributes.browser_language)
+);
+
+const sentimentScore = computed(
+  () => props.conversationAttributes.sentiment_score
 );
 
 const platformName = computed(() => {
@@ -86,6 +91,9 @@ const staticElements = computed(() =>
 
 <template>
   <div class="conversation--details">
+    <div v-if="sentimentScore !== undefined" class="mb-2">
+      <SentimentBadge :score="sentimentScore" />
+    </div>
     <CustomAttributes
       :static-elements="staticElements"
       attribute-class="conversation--attribute"
