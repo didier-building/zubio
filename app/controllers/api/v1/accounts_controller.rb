@@ -47,7 +47,9 @@ class Api::V1::AccountsController < Api::BaseController
     @account.assign_attributes(account_params.slice(:name, :locale, :domain, :support_email))
     @account.custom_attributes.merge!(custom_attributes_params)
     @account.settings.merge!(settings_params)
-    @account.custom_attributes['onboarding_step'] = 'invite_team' if @account.custom_attributes['onboarding_step'] == 'account_update'
+    if @account.custom_attributes['onboarding_step'] == 'account_update'
+      @account.custom_attributes['onboarding_step'] = 'invite_team'
+    end
     @account.save!
   end
 
@@ -92,14 +94,8 @@ class Api::V1::AccountsController < Api::BaseController
   end
 
   def settings_params
-    params.permit(
-      :auto_resolve_after,
-      :auto_resolve_message,
-      :auto_resolve_ignore_waiting,
-      :audio_transcriptions,
-      :auto_resolve_label,
-      :ai_suggestions_enabled
-    )
+    params.permit(:auto_resolve_after, :auto_resolve_message, :auto_resolve_ignore_waiting,
+                  :audio_transcriptions, :sentiment_analysis, :auto_resolve_label)
   end
 
   def check_signup_enabled

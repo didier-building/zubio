@@ -82,9 +82,10 @@ const conversationMetadataGetter = useMapGetter(
 const currentConversationMetaData = computed(() =>
   conversationMetadataGetter.value(conversationId.value)
 );
-const conversationAdditionalAttributes = computed(
-  () => currentConversationMetaData.value.additional_attributes || {}
-);
+const conversationAdditionalAttributes = computed(() => ({
+  sentiment_score: currentChat.value.sentiment_score,
+  ...(currentConversationMetaData.value.additional_attributes || {}),
+}));
 
 const channelType = computed(() => currentChat.value.meta?.channel);
 

@@ -17,6 +17,7 @@ import BuildInfo from './components/BuildInfo.vue';
 import AccountDelete from './components/AccountDelete.vue';
 import AutoResolve from './components/AutoResolve.vue';
 import AudioTranscription from './components/AudioTranscription.vue';
+import SentimentAnalysis from './components/SentimentAnalysis.vue';
 import SectionLayout from './components/SectionLayout.vue';
 import AiSuggestions from './components/AiSuggestions.vue';
 
@@ -29,6 +30,7 @@ export default {
     AccountDelete,
     AutoResolve,
     AudioTranscription,
+    SentimentAnalysis,
     AiSuggestions,
     SectionLayout,
     WithLabel,
@@ -77,6 +79,12 @@ export default {
       return this.isFeatureEnabledonAccount(
         this.accountId,
         FEATURE_FLAGS.CAPTAIN
+      );
+    },
+    showSentimentAnalysisConfig() {
+      return this.isFeatureEnabledonAccount(
+        this.accountId,
+        FEATURE_FLAGS.SENTIMENT_ANALYSIS
       );
     },
     languagesSortedByCode() {
@@ -246,6 +254,7 @@ export default {
     </div>
     <AutoResolve v-if="showAutoResolutionConfig" />
     <AudioTranscription v-if="showAudioTranscriptionConfig" />
+    <SentimentAnalysis v-if="showSentimentAnalysisConfig" />
     <AiSuggestions />
     <AccountId />
     <div v-if="!uiFlags.isFetchingItem && isOnChatwootCloud">

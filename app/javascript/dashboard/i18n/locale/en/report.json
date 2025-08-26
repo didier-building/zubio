@@ -6,6 +6,9 @@
     "DOWNLOAD_AGENT_REPORTS": "Download agent reports",
     "DATA_FETCHING_FAILED": "Failed to fetch data, please try again later.",
     "SUMMARY_FETCHING_FAILED": "Failed to fetch summary, please try again later.",
+    "SENTIMENT": {
+      "TITLE": "Sentiment over time"
+    },
     "METRICS": {
       "CONVERSATIONS": {
         "NAME": "Conversations",
