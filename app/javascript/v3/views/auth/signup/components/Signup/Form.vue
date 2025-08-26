@@ -66,9 +66,9 @@ export default {
     ...mapGetters({ globalConfig: 'globalConfig/get' }),
     termsLink() {
       return this.$t('REGISTER.TERMS_ACCEPT')
-        .replace('https://www.chatwoot.com/terms', this.globalConfig.termsURL)
+        .replace('https://www.zubio.com/terms', this.globalConfig.termsURL)
         .replace(
-          'https://www.chatwoot.com/privacy-policy',
+          'https://www.zubio.com/privacy-policy',
           this.globalConfig.privacyURL
         );
     },

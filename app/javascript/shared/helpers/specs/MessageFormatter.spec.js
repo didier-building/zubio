@@ -4,23 +4,22 @@ describe('#MessageFormatter', () => {
   describe('content with links', () => {
     it('should format correctly', () => {
       const message =
-        'Chatwoot is an opensource tool. [Chatwoot](https://www.chatwoot.com)';
+        'Chatwoot is an opensource tool. [Chatwoot](https://www.zubio.com)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">Chatwoot</a></p>'
+        '<p>Chatwoot is an opensource tool. <a href="https://www.zubio.com" class="link" rel="noreferrer noopener nofollow" target="_blank">Chatwoot</a></p>'
       );
     });
     it('should format correctly', () => {
-      const message =
-        'Chatwoot is an opensource tool. https://www.chatwoot.com';
+      const message = 'Chatwoot is an opensource tool. https://www.zubio.com';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <a href="https://www.chatwoot.com" class="link" rel="noreferrer noopener nofollow" target="_blank">https://www.chatwoot.com</a></p>'
+        '<p>Chatwoot is an opensource tool. <a href="https://www.zubio.com" class="link" rel="noreferrer noopener nofollow" target="_blank">https://www.zubio.com</a></p>'
       );
     });
     it('should not convert template variables to links when linkify is disabled', () => {
-      const message = 'Hey {{customer.name}}, check https://chatwoot.com';
+      const message = 'Hey {{customer.name}}, check https://zubio.com';
       const formatter = new MessageFormatter(message, false, false, false);
       expect(formatter.formattedMessage).toMatch(
-        '<p>Hey {{customer.name}}, check https://chatwoot.com</p>'
+        '<p>Hey {{customer.name}}, check https://zubio.com</p>'
       );
     });
   });
@@ -38,25 +37,25 @@ describe('#MessageFormatter', () => {
   describe('content with image and has "cw_image_height" query at the end of URL', () => {
     it('should set image height correctly', () => {
       const message =
-        'Chatwoot is an opensource tool. ![](http://chatwoot.com/chatwoot.png?cw_image_height=24px)';
+        'Chatwoot is an opensource tool. ![](http://zubio.com/chatwoot.png?cw_image_height=24px)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <img src="http://chatwoot.com/chatwoot.png?cw_image_height=24px" alt="" style="height: 24px;" /></p>'
+        '<p>Chatwoot is an opensource tool. <img src="http://zubio.com/chatwoot.png?cw_image_height=24px" alt="" style="height: 24px;" /></p>'
       );
     });
 
     it('should set image height correctly if its original size', () => {
       const message =
-        'Chatwoot is an opensource tool. ![](http://chatwoot.com/chatwoot.png?cw_image_height=auto)';
+        'Chatwoot is an opensource tool. ![](http://zubio.com/chatwoot.png?cw_image_height=auto)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <img src="http://chatwoot.com/chatwoot.png?cw_image_height=auto" alt="" style="height: auto;" /></p>'
+        '<p>Chatwoot is an opensource tool. <img src="http://zubio.com/chatwoot.png?cw_image_height=auto" alt="" style="height: auto;" /></p>'
       );
     });
 
     it('should not set height', () => {
       const message =
-        'Chatwoot is an opensource tool. ![](http://chatwoot.com/chatwoot.png)';
+        'Chatwoot is an opensource tool. ![](http://zubio.com/chatwoot.png)';
       expect(new MessageFormatter(message).formattedMessage).toMatch(
-        '<p>Chatwoot is an opensource tool. <img src="http://chatwoot.com/chatwoot.png" alt="" /></p>'
+        '<p>Chatwoot is an opensource tool. <img src="http://zubio.com/chatwoot.png" alt="" /></p>'
       );
     });
   });
@@ -112,9 +111,9 @@ describe('#MessageFormatter', () => {
   describe('plain text content', () => {
     it('returns the plain text without HTML', () => {
       const message =
-        '<b>Chatwoot is an opensource tool. https://www.chatwoot.com</b>';
+        '<b>Chatwoot is an opensource tool. https://www.zubio.com</b>';
       expect(new MessageFormatter(message).plainText).toMatch(
-        'Chatwoot is an opensource tool. https://www.chatwoot.com'
+        'Chatwoot is an opensource tool. https://www.zubio.com'
       );
     });
   });

@@ -397,7 +397,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "Slug de catégorie pour les URL",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/fr-FR/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/fr-FR/categories/my-slug",
           "ERROR": "Le Slug est requis"
         },
         "DESCRIPTION": {
@@ -428,7 +428,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "Slug de catégorie pour les URL",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/fr-FR/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/fr-FR/categories/my-slug",
           "ERROR": "Le Slug est requis"
         },
         "DESCRIPTION": {
@@ -612,7 +612,7 @@
             "LABEL": "Slug",
             "PLACEHOLDER": "Slug de catégorie pour les URL",
             "ERROR": "Le Slug est requis",
-            "HELP_TEXT": "app.chatwoot.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
+            "HELP_TEXT": "app.zubio.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
           },
           "DESCRIPTION": {
             "LABEL": "Description",
