@@ -397,7 +397,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "Slug دسته برای آدرس ها",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Slug مورد نیاز است"
         },
         "DESCRIPTION": {
@@ -428,7 +428,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "Slug دسته برای آدرس ها",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Slug مورد نیاز است"
         },
         "DESCRIPTION": {
@@ -612,7 +612,7 @@
             "LABEL": "Slug",
             "PLACEHOLDER": "Slug دسته برای آدرس ها",
             "ERROR": "Slug مورد نیاز است",
-            "HELP_TEXT": "app.chatwoot.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
+            "HELP_TEXT": "app.zubio.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
           },
           "DESCRIPTION": {
             "LABEL": "توضیحات",

@@ -397,7 +397,7 @@
         "SLUG": {
           "LABEL": "Мітка",
           "PLACEHOLDER": "Мітка категорії для URL-адрес",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Необхідно вказати мітку"
         },
         "DESCRIPTION": {
@@ -428,7 +428,7 @@
         "SLUG": {
           "LABEL": "Мітка",
           "PLACEHOLDER": "Мітка категорії для URL-адрес",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Необхідно вказати мітку"
         },
         "DESCRIPTION": {
@@ -612,7 +612,7 @@
             "LABEL": "Мітка",
             "PLACEHOLDER": "Мітка категорії для URL-адрес",
             "ERROR": "Необхідно вказати мітку",
-            "HELP_TEXT": "app.chatwoot.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
+            "HELP_TEXT": "app.zubio.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
           },
           "DESCRIPTION": {
             "LABEL": "Опис",

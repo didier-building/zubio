@@ -397,7 +397,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "类别的URL Slug",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Slug是必填项"
         },
         "DESCRIPTION": {
@@ -428,7 +428,7 @@
         "SLUG": {
           "LABEL": "Slug",
           "PLACEHOLDER": "类别的URL Slug",
-          "HELP_TEXT": "app.chatwoot.com/hc/my-portal/en-US/categories/my-slug",
+          "HELP_TEXT": "app.zubio.com/hc/my-portal/en-US/categories/my-slug",
           "ERROR": "Slug是必填项"
         },
         "DESCRIPTION": {
@@ -612,7 +612,7 @@
             "LABEL": "Slug",
             "PLACEHOLDER": "类别的URL Slug",
             "ERROR": "Slug 是必填项",
-            "HELP_TEXT": "app.chatwoot.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
+            "HELP_TEXT": "app.zubio.com/hc/{portalSlug}/{localeCode}/categories/{categorySlug}"
           },
           "DESCRIPTION": {
             "LABEL": "描述信息",
