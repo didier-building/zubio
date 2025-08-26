@@ -6,8 +6,12 @@ const createConversationAPI = async content => {
   return API.post(urlData.url, urlData.params);
 };
 
-const sendMessageAPI = async (content, replyTo = null) => {
-  const urlData = endPoints.sendMessage(content, replyTo);
+const sendMessageAPI = async (
+  content,
+  replyTo = null,
+  sendOriginal = false
+) => {
+  const urlData = endPoints.sendMessage(content, replyTo, sendOriginal);
   return API.post(urlData.url, urlData.params);
 };
 
