@@ -111,6 +111,8 @@
         "API": {
           "SUCCESS": "Sentiment analysis setting updated successfully",
           "ERROR": "Failed to update sentiment analysis setting"
+        }
+      },
       "AI_SUGGESTIONS": {
         "TITLE": "AI reply suggestions",
         "NOTE": "Enable AI-generated reply suggestions for agents.",
