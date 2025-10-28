@@ -14,11 +14,40 @@
   --brand-neutral: #0A0A0A;
   
   /* Override Chatwoot's color tokens */
-  --w-500: var(--brand-primary);
-  --w-600: var(--brand-primary-dark);
-  --w-700: var(--brand-primary-dark);
-  --s-500: var(--brand-accent);
-  --g-500: var(--brand-secondary);
+  --w-25: #f0f7f8;
+  --w-50: #e1eff1;
+  --w-75: #c3dfe3;
+  --w-100: #a5cfd5;
+  --w-200: #81afb5;
+  --w-300: #5d8f96;
+  --w-400: #397077;
+  --w-500: #125C6D !important;
+  --w-600: #0E4652 !important;
+  --w-700: #0a3139 !important;
+  --w-800: #061c21 !important;
+  --w-900: #030e11 !important;
+  
+  --s-50: #fef9ec;
+  --s-100: #fdf3d9;
+  --s-200: #fbe7b3;
+  --s-300: #f9db8d;
+  --s-400: #f7cf67;
+  --s-500: #E8BC3A !important;
+  --s-600: #ba962e !important;
+  --s-700: #8b7123 !important;
+  --s-800: #5d4b17 !important;
+  --s-900: #2e260c !important;
+  
+  --g-50: #f4f8f1;
+  --g-100: #e9f1e3;
+  --g-200: #d3e3c7;
+  --g-300: #bdd5ab;
+  --g-400: #a7c78f;
+  --g-500: #86B052 !important;
+  --g-600: #6b8d42 !important;
+  --g-700: #506a31 !important;
+  --g-800: #364621 !important;
+  --g-900: #1b2310 !important;
   
   /* Typography */
   --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -26,28 +55,35 @@
 
 /* Primary buttons */
 .button--primary,
-.btn-primary {
+.btn-primary,
+button[color="primary"],
+[class*="bg-woot-"] {
   background-color: var(--brand-primary) !important;
   border-color: var(--brand-primary) !important;
 }
 
 .button--primary:hover,
-.btn-primary:hover {
+.btn-primary:hover,
+button[color="primary"]:hover {
   background-color: var(--brand-primary-dark) !important;
   border-color: var(--brand-primary-dark) !important;
 }
 
-/* Links */
-a {
-  color: var(--brand-primary);
+/* Links and text colors */
+a,
+.link,
+[class*="text-woot-"] {
+  color: var(--brand-primary) !important;
 }
 
-a:hover {
-  color: var(--brand-primary-dark);
+a:hover,
+.link:hover {
+  color: var(--brand-primary-dark) !important;
 }
 
 /* Widget accent color */
-.woot-widget-bubble {
+.woot-widget-bubble,
+.widget-bubble {
   background-color: var(--brand-primary) !important;
 }
 
@@ -57,16 +93,94 @@ a:hover {
 
 /* Login/auth pages */
 .login-box,
-.auth-page {
+.auth-page,
+.auth-base {
   --primary-color: var(--brand-primary);
 }
 
-/* Sidebar active states */
-.sidebar-item.active {
+.auth-form .button--primary {
+  background: var(--brand-primary) !important;
+}
+
+/* Sidebar and navigation */
+.sidebar-item.active,
+.secondary-menu .menu-item.active,
+[class*="sidebar"][class*="active"] {
   background-color: var(--brand-primary) !important;
+  color: white !important;
+}
+
+.primary-sidebar,
+.app-context-menu {
+  background-color: var(--brand-primary-dark);
 }
 
 /* Status badges */
-.status-badge--online {
+.status-badge--online,
+.status--online {
   background-color: var(--brand-secondary) !important;
+}
+
+/* Conversation header */
+.conv-header,
+.conversation-header {
+  border-bottom: 2px solid var(--brand-primary);
+}
+
+/* Input focus states */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--brand-primary) !important;
+  box-shadow: 0 0 0 3px rgba(18, 92, 109, 0.1) !important;
+}
+
+/* Checkbox and radio active states */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+}
+
+/* Tabs active state */
+.tabs .tab.is-active,
+.tab--active {
+  border-bottom-color: var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
+}
+
+/* Progress bars */
+.progress-bar,
+[role="progressbar"] {
+  background-color: var(--brand-primary) !important;
+}
+
+/* Toast notifications */
+.woot-toast--success {
+  background-color: var(--brand-secondary) !important;
+}
+
+/* Modal headers */
+.modal-header,
+.modal--header {
+  background-color: var(--brand-primary);
+  color: white;
+}
+
+/* Badges */
+.badge--primary,
+[class*="badge"][class*="primary"] {
+  background-color: var(--brand-primary) !important;
+}
+
+/* Switch component */
+.switch input:checked + .slider {
+  background-color: var(--brand-primary) !important;
+}
+
+/* Dropdown active items */
+.dropdown-menu__item--active,
+.dropdown-item.active {
+  background-color: var(--brand-primary) !important;
+  color: white !important;
 }
