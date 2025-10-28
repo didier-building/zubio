@@ -1,4 +1,4 @@
-import { frontendURL } from '../../helper/URLHelper';
+import { frontendURL } from '../../../helper/URLHelper';
 import SentimentReport from './SentimentReport.vue';
 import { FEATURE_FLAGS } from 'dashboard/featureFlags';
 
