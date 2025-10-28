@@ -1,0 +1,58 @@
+name: Zubio Brand Build
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-and-audit:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.4'
+          bundler-cache: true
+      
+      - name: Install pnpm
+        run: npm install -g pnpm@10.2.0
+      
+      - name: Install dependencies
+        run: |
+          pnpm install
+          bundle install
+      
+      - name: Apply Zubio branding
+        run: bash your-overlay/scripts/apply_branding.sh
+      
+      - name: Build frontend
+        run: pnpm build
+      
+      - name: Run branding audit
+        run: bash your-overlay/scripts/audit_leftovers.sh
+      
+      - name: Lint Ruby
+        run: bundle exec rubocop
+        continue-on-error: true
+      
+      - name: Lint JavaScript
+        run: pnpm eslint
+        continue-on-error: true
+      
+      - name: Run tests
+        run: |
+          bundle exec rspec
+          pnpm test
+        continue-on-error: true

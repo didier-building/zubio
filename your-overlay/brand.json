@@ -1,0 +1,24 @@
+{
+  "productName": "Zubio",
+  "companyName": "Zubio Ltd",
+  "shortcode": "zubio",
+  "domains": {
+    "app": "https://app.zubio.rw",
+    "api": "https://api.zubio.rw",
+    "status": "https://status.zubio.rw",
+    "privacy": "https://zubio.rw/privacy",
+    "terms": "https://zubio.rw/terms"
+  },
+  "colors": {
+    "primary": "#125C6D",
+    "primaryDark": "#0E4652",
+    "accent": "#E8BC3A",
+    "secondary": "#86B052",
+    "lightTeal": "#81AFB5",
+    "neutral": "#0A0A0A"
+  },
+  "emails": {
+    "support": "support@zubio.rw",
+    "mailerSender": "notifications@zubio.rw"
+  }
+}

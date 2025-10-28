@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Zubio Widget Icon -->
+  <circle cx="16" cy="16" r="16" fill="#125C6D"/>
+  <circle cx="16" cy="16" r="8" fill="#E8BC3A"/>
+  <path d="M12 12 L20 12 L16 20 Z" fill="#FFFFFF"/>
+</svg>

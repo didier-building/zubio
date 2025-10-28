@@ -1,0 +1,6 @@
+<svg width="180" height="40" viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Zubio Logo -->
+  <rect x="0" y="0" width="40" height="40" rx="8" fill="#125C6D"/>
+  <text x="50" y="28" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#125C6D">Zubio</text>
+  <circle cx="20" cy="20" r="8" fill="#E8BC3A"/>
+</svg>
