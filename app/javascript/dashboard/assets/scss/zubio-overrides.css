@@ -1,0 +1,72 @@
+/**
+ * Zubio Brand Overrides
+ * Applied over Chatwoot base styles
+ * DO NOT modify core Chatwoot CSS - only override brand tokens here
+ */
+
+:root {
+  /* Brand Colors from brand.json */
+  --brand-primary: #125C6D;
+  --brand-primary-dark: #0E4652;
+  --brand-accent: #E8BC3A;
+  --brand-secondary: #86B052;
+  --brand-light-teal: #81AFB5;
+  --brand-neutral: #0A0A0A;
+  
+  /* Override Chatwoot's color tokens */
+  --w-500: var(--brand-primary);
+  --w-600: var(--brand-primary-dark);
+  --w-700: var(--brand-primary-dark);
+  --s-500: var(--brand-accent);
+  --g-500: var(--brand-secondary);
+  
+  /* Typography */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Primary buttons */
+.button--primary,
+.btn-primary {
+  background-color: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+}
+
+.button--primary:hover,
+.btn-primary:hover {
+  background-color: var(--brand-primary-dark) !important;
+  border-color: var(--brand-primary-dark) !important;
+}
+
+/* Links */
+a {
+  color: var(--brand-primary);
+}
+
+a:hover {
+  color: var(--brand-primary-dark);
+}
+
+/* Widget accent color */
+.woot-widget-bubble {
+  background-color: var(--brand-primary) !important;
+}
+
+.woot--bubble-holder .woot-elements--left .woot-widget-bubble {
+  background-color: var(--brand-primary) !important;
+}
+
+/* Login/auth pages */
+.login-box,
+.auth-page {
+  --primary-color: var(--brand-primary);
+}
+
+/* Sidebar active states */
+.sidebar-item.active {
+  background-color: var(--brand-primary) !important;
+}
+
+/* Status badges */
+.status-badge--online {
+  background-color: var(--brand-secondary) !important;
+}
