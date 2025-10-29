@@ -6,17 +6,24 @@ import { test, expect } from '@playwright/test';
  */
 
 test.describe('Settings Footer Branding', () => {
+  let accountId: string;
+
   test.beforeEach(async ({ page }) => {
     // Login as admin first
     await page.goto('/app/login');
-    await page.fill('input[type="email"]', 'admin@zubio.com');
-    await page.fill('input[type="password"]', 'Admin123!');
-    await page.click('button[type="submit"]');
+    await page.fill('[data-testid="email_input"]', 'admin@zubio.com');
+    await page.fill('[data-testid="password_input"]', 'Admin123!');
+    await page.click('[data-testid="submit_button"]');
     await page.waitForURL('**/app/accounts/**');
+    
+    // Extract account ID from URL
+    const url = page.url();
+    const match = url.match(/\/app\/accounts\/(\d+)/);
+    accountId = match ? match[1] : '1';
   });
 
   test('should display Zubio in settings page', async ({ page }) => {
-    await page.goto('/app/accounts/1/settings');
+    await page.goto(`/app/accounts/${accountId}/settings`);
     
     // Check for Zubio branding in settings
     const zubioText = page.getByText(/Zubio/i).first();
@@ -24,7 +31,7 @@ test.describe('Settings Footer Branding', () => {
   });
 
   test('should have Terms link pointing to zubio.rw', async ({ page }) => {
-    await page.goto('/app/accounts/1/settings');
+    await page.goto(`/app/accounts/${accountId}/settings`);
     
     // Look for Terms link (may be in footer or policy section)
     const termsLink = page.locator('a[href*="zubio.rw/terms"]').first();
@@ -37,7 +44,7 @@ test.describe('Settings Footer Branding', () => {
   });
 
   test('should have Privacy link pointing to zubio.rw', async ({ page }) => {
-    await page.goto('/app/accounts/1/settings');
+    await page.goto(`/app/accounts/${accountId}/settings`);
     
     // Look for Privacy link
     const privacyLink = page.locator('a[href*="zubio.rw/privacy"]').first();
@@ -50,7 +57,7 @@ test.describe('Settings Footer Branding', () => {
   });
 
   test('should not contain "Chatwoot" in settings UI', async ({ page }) => {
-    await page.goto('/app/accounts/1/settings');
+    await page.goto(`/app/accounts/${accountId}/settings`);
     
     // Get visible text content (excluding script tags)
     const bodyText = await page.locator('body').textContent();
