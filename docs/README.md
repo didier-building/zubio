@@ -1,6 +1,6 @@
-# Chatwoot System Overview for Developers
+# Zubio System Overview for Developers
 
-Welcome to the Chatwoot documentation for developers! This guide provides a comprehensive overview of the system to help you understand its architecture, workflows, and technical implementation.
+Welcome to the Zubio documentation for developers! This guide provides a comprehensive overview of the system to help you understand its architecture, workflows, and technical implementation.
 
 ## 📚 Documentation Index
 
@@ -13,7 +13,7 @@ Welcome to the Chatwoot documentation for developers! This guide provides a comp
 
 ## 🏛️ System Architecture at a Glance
 
-Chatwoot is built as a Ruby on Rails 7.1 application with a Vue.js 3 frontend, using PostgreSQL 16 (with pgvector) for data storage and Redis for caching and background jobs.
+Zubio is built as a Ruby on Rails 7.1 application with a Vue.js 3 frontend, using PostgreSQL 16 (with pgvector) for data storage and Redis for caching and background jobs.
 
 ```
 ┌─────────────────────────┐
@@ -41,7 +41,7 @@ Chatwoot is built as a Ruby on Rails 7.1 application with a Vue.js 3 frontend, u
 ## 🔑 Key Concepts
 
 ### 1. Multi-tenancy
-Chatwoot is designed as a multi-tenant system, where each **Account** represents an organization. All major resources (conversations, contacts, inboxes) are scoped to an account.
+Zubio is designed as a multi-tenant system, where each **Account** represents an organization. All major resources (conversations, contacts, inboxes) are scoped to an account.
 
 ### 2. Omnichannel Support
 The system unifies conversations from multiple channels (web chat, email, social media) into a single interface through the concept of **Inboxes**.
@@ -81,11 +81,10 @@ Users have different roles (admin, agent) with varying permissions within accoun
 
 ## 📌 Resources
 
-- GitHub Repository: [chatwoot/chatwoot](https://github.com/chatwoot/chatwoot)
-- Official Documentation: [chatwoot.com/docs](https://www.chatwoot.com/docs)
-- API Reference: [chatwoot.com/developers/api](https://www.chatwoot.com/developers/api)
-- Community Forums: [community.chatwoot.com](https://community.chatwoot.com)
+- GitHub Repository: [didier-building/zubio](https://github.com/didier-building/zubio)
+- Team Documentation: See [CONTRIBUTING.md](../CONTRIBUTING.md) and other guides in the docs/ folder
+- Based on: [Chatwoot](https://github.com/chatwoot/chatwoot) - Open-source customer support platform
 
 ---
 
-This documentation was prepared for Zubio's implementation of Chatwoot.
+This documentation is part of the Zubio project, built on Chatwoot's open-source foundation.

@@ -8,7 +8,7 @@ You've forked Chatwoot (open-source) and are creating your own branded, private 
 
 Your current repository structure is already ideal:
 - Owner: `didier-building`
-- Repository: `didier-building/zubio-chatwoot`
+- Repository: `didier-building/zubio`
 - Status: Private (recommended)
 - Type: Personal/Organization repository
 - Branch: `develop`
@@ -66,8 +66,8 @@ Team members work directly with the organization repository:
 
 ```bash
 # Team members clone the organization repo
-git clone git@github.com:didier-building/zubio-chatwoot.git
-cd zubio-chatwoot
+git clone git@github.com:didier-building/zubio.git
+cd zubio
 
 # Run setup
 ./setup-dev.sh
@@ -275,7 +275,7 @@ git push origin main --tags
 
 ```
 didier-building/
-├── zubio-chatwoot (THIS REPO - Main product)
+├── zubio (THIS REPO - Main product)
 │   ├── Private
 │   ├── Teams: zubio-developers, zubio-maintainers, zubio-admins
 │   └── Branches: main, develop, feature/*
@@ -304,7 +304,7 @@ didier-building/
 
 ```bash
 # They clone the organization repository
-git clone git@github.com:didier-building/zubio-chatwoot.git
+git clone git@github.com:didier-building/zubio.git
 
 # They DO NOT fork to their personal accounts
 # They work directly with the organization repo
@@ -339,7 +339,7 @@ git clone git@github.com:didier-building/zubio-chatwoot.git
 ## 🎉 You're All Set!
 
 Your current setup is already correct:
-- ✅ Organization repository (didier-building/zubio-chatwoot)
+- ✅ Organization repository (didier-building/zubio)
 - ✅ Rebranded to Zubio
 - ✅ Ready for team collaboration
 - ✅ Can add custom features

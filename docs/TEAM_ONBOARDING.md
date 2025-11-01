@@ -101,7 +101,7 @@ Follow this checklist to get fully set up and ready to contribute.
 ## 📝 Resources
 
 ### Quick Links
-- Repository: https://github.com/didier-building/zubio-chatwoot
+- Repository: https://github.com/didier-building/zubio
 - Local App: http://localhost:3000
 - MailHog: http://localhost:8025
 

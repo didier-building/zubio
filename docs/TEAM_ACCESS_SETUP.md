@@ -8,7 +8,7 @@ For a private team project, give your team direct access to your repository rath
 
 ### On GitHub:
 
-1. **Go to your repository:** `https://github.com/didier-building/zubio-chatwoot`
+1. **Go to your repository:** `https://github.com/didier-building/zubio`
 
 2. **Navigate to Settings → Collaborators and teams**
    - Click "Add people" or "Add teams"
@@ -70,15 +70,15 @@ Once added to the repository, team members should:
 ### Initial Setup
 ```bash
 # 1. Clone the main repository (not a fork)
-git clone git@github.com:didier-building/zubio-chatwoot.git
-cd zubio-chatwoot
+git clone git@github.com:didier-building/zubio.git
+cd zubio
 
 # 2. Run setup
 ./setup-dev.sh
 
 # 3. Verify they can access
 git remote -v
-# Should show: origin  git@github.com:didier-building/zubio-chatwoot.git
+# Should show: origin  git@github.com:didier-building/zubio.git
 ```
 
 ### Daily Workflow
@@ -213,14 +213,14 @@ If team members prefer to fork (for learning or open-source contribution):
 ### Team Member Setup:
 ```bash
 # 1. Fork the repository on GitHub
-# Click "Fork" button on github.com/didier-building/zubio-chatwoot
+# Click "Fork" button on github.com/didier-building/zubio
 
 # 2. Clone their fork
-git clone git@github.com:THEIR_USERNAME/zubio-chatwoot.git
-cd zubio-chatwoot
+git clone git@github.com:THEIR_USERNAME/zubio.git
+cd zubio
 
 # 3. Add upstream remote
-git remote add upstream git@github.com:didier-building/zubio-chatwoot.git
+git remote add upstream git@github.com:didier-building/zubio.git
 
 # 4. Before starting work, sync with upstream
 git fetch upstream
@@ -234,7 +234,7 @@ git checkout -b feature/my-feature
 git push origin feature/my-feature
 
 # 6. Create PR from their fork to your repository
-# On GitHub: their fork → Create Pull Request → target: didier-building/zubio-chatwoot
+# On GitHub: their fork → Create Pull Request → target: didier-building/zubio
 ```
 
 ## 📊 Comparison Table

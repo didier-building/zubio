@@ -74,8 +74,8 @@ New team members can get started in just 3 steps:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/didier-building/zubio-chatwoot.git
-cd zubio-chatwoot
+git clone https://github.com/didier-building/zubio.git
+cd zubio
 
 # 2. Run the automated setup script
 ./setup-dev.sh

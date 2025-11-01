@@ -15,8 +15,8 @@ Welcome to the Zubio project! This guide will help you get started with contribu
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/didier-building/zubio-chatwoot.git
-   cd zubio-chatwoot
+   git clone https://github.com/didier-building/zubio.git
+   cd zubio
    ```
 
 2. **Copy environment configuration:**
